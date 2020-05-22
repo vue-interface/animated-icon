@@ -2,6 +2,10 @@ import IconRegistry from './IconRegistry';
 
 const registry = new IconRegistry();
 
+function get(...args) {
+    return registry.get(...args);
+}
+
 function register(...args) {
     return registry.register(...args);
 }
@@ -15,6 +19,7 @@ function reset(...args) {
 }
 
 export {
+    get,
     register,
     remove,
     reset

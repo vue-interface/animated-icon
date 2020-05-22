@@ -1,5 +1,8 @@
 <template>
-    <div class="animated-icon">
+    <div
+        class="animated-icon"
+        @mouseenter="hover && play()"
+        @mouseleave="hover && pause()">
         <lottie
             v-if="loaded"
             :options="options"
@@ -10,6 +13,8 @@
 
 <script>
 import Lottie from 'vue-lottie';
+import registry from './registry';
+import IconRegistry from './IconRegistry';
 
 export default {
 
@@ -67,13 +72,20 @@ export default {
         height: Number,
 
         /**
+         * Animate the icon on hover.
+         *
+         * @param {Boolean}
+         */
+        hover: Boolean,
+
+        /**
          * The icon. Should be a JSON object or Promise that returns a JSON
          * object.
          *
          * @param {String|Object|Promise}
          */
         icon: {
-            type: [Object, Promise],
+            type: [String, Object, Promise],
             required: true
         },
 
@@ -84,6 +96,16 @@ export default {
          * @param {Boolean|Number}
          */
         loop: [Boolean, Number],
+
+        /**
+         * The icon registry. Uses the default registry unless specified.
+         *
+         * @param {IconRegistry}
+         */
+        registry: {
+            type: IconRegistry,
+            default: () => registry
+        },
 
         /**
          * The size of the icon. Can pass a string like "sm", "md", "lg", or
@@ -201,6 +223,12 @@ export default {
         promise() {
             if(typeof this.icon === 'object') {
                 return Promise.resolve(this.icon);
+            }
+            
+            if(typeof this.icon === 'string') {
+                return Promise.resolve(
+                    this.registry.get(this.icon)
+                );
             }
             
             return this.icon;

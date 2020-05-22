@@ -15,9 +15,15 @@ export default class IconRegistry {
         );
     }
 
-    register(name, value) {
-        console.log(this);
+    get(name) {
+        if(this.icons[name]) {
+            return this.icons[name];
+        }
 
+        throw new Error(`The icon with the name "${name}" has not been registered yet!`);
+    }
+
+    register(name, value) {
         if(typeof name === 'object') {
             Object.entries(name).forEach(([name, module]) => {
                 this.register(name, module);

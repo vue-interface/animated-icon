@@ -1,7 +1,10 @@
 import AnimatedIcon from './src/AnimatedIcon';
-import registry, { register, remove, reset } from './src/registry';
+import * as icons from './icons';
+import registry, { get, register, remove, reset } from './src/registry';
 
 export {
+    icons,
+    get,
     registry,
     register,
     remove,
