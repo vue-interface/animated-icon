@@ -12,6 +12,11 @@ fs.readdir(basePath, function (err, files) {
 
     const packages = [];
 
+    // Remove anything not a directory...
+    files = files.filter(dir => {
+        return fs.lstatSync(path.join(basePath, dir)).isDirectory()
+    });
+
     //listing all files using forEach
     files.forEach(function (dir) {
         const filename = path.join(basePath, dir, 'index.js');
