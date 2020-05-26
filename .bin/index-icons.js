@@ -10,31 +10,31 @@ fs.readdir(basePath, function (err, files) {
         return console.error('Unable to scan directory: ' + err);
     }
 
+    const packages = [];
+
     //listing all files using forEach
     files.forEach(function (dir) {
         const filename = path.join(basePath, dir, 'index.js');
         
         if(fs.lstatSync(path.join(basePath, dir)).isDirectory()) {
-            const contents = [
+            fs.writeFileSync(filename, [
                 `import ${camelCase(dir)} from './${dir}.json';`,
                 `export default ${camelCase(dir)};`
-            ].join('\n');
-            
-            fs.writeFileSync(filename, contents);
+            ].join('\n'));
+
+            packages.push(
+                `const ${camelCase(dir)} = ${fs.readFileSync(path.join(basePath, dir, `${dir}.json`))};\n`
+            );
         }
     });
-    
-    let contents = files.map(dir => {
-        return `import ${camelCase(dir)} from './${dir}';`;
-    });
-    
-    contents = contents.concat([
-        '\nexport {',
+
+    packages.push([
+        'export {',
             files.map(dir => `    ${camelCase(dir)},`).join('\n'),
         '};'
-    ]);
+    ].join('\n'));
 
-    fs.writeFileSync(path.join(basePath, 'index.js'), contents.join('\n'));
+    fs.writeFileSync(path.join(basePath, 'index.js'), packages.join('\n'));
 
     console.log('Finished!');
 });
