@@ -34,9 +34,9 @@
   "author": "Justin Kimbrell",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/vue-interface/alert/issues"
+    "url": "https://github.com/vue-interface/animated-icon/issues"
   },
-  "homepage": "https://github.com/vue-interface/alert/docs#readme",
+  "homepage": "https://github.com/vue-interface/animated-icon/docs#readme",
   "dependencies": {
     "core-js": "^3.6.4",
     "vue": "^2.6.11",
