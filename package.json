@@ -1,6 +1,6 @@
 {
   "name": "@vue-interface/animated-icon",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "A Vue component wrapper for Lottie with pre-packaged animated icons.",
   "main": "index.js",
   "sideEffect": false,
