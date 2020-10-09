@@ -4124,7 +4124,7 @@ var hourglass = __webpack_require__("bc92");
 // CONCATENATED MODULE: ./icons/hourglass/index.js
 
 /* harmony default export */ var icons_hourglass = (hourglass);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"fb220f54-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/AnimatedIcon.vue?vue&type=template&id=043aa7d8&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"57437a34-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/AnimatedIcon.vue?vue&type=template&id=043aa7d8&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"animated-icon",on:{"mouseenter":function($event){_vm.hover && _vm.play()},"mouseleave":function($event){_vm.hover && _vm.pause()}}},[(_vm.loaded)?_c('lottie',{style:({width: ((_vm.dimensions.width) + "px"), height: ((_vm.dimensions.height) + "px"), fontSize: ((_vm.dimensions.height) + "px"), lineHeight: 0}),attrs:{"options":_vm.options},on:{"animCreated":_vm.onAnimCreated}}):_vm._e()],1)}
 var staticRenderFns = []
 

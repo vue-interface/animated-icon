@@ -2,20 +2,20 @@ import IconRegistry from './IconRegistry';
 
 const registry = new IconRegistry();
 
-function get(...args) {
-    return registry.get(...args);
+function get() {
+    return registry.get.apply(registry, arguments);
 }
 
-function register(...args) {
-    return registry.register(...args);
+function register() {
+    return registry.register.apply(registry, arguments);
 }
 
-function remove(...args) {
-    return registry.remove(...args);
+function remove() {
+    return registry.remove.apply(registry, arguments);
 }
 
-function reset(...args) {
-    return registry.reset(...args);
+function reset() {
+    return registry.reset.apply(registry, arguments);
 }
 
 export {
