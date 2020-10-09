@@ -40,22 +40,22 @@
   "homepage": "https://github.com/vue-interface/animated-icon/docs#readme",
   "dependencies": {
     "core-js": "^3.6.4",
-    "vue": "^2.6.11",
+    "vue": "^2.6.12",
     "vue-lottie": "^0.2.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.0",
-    "@vue/cli-plugin-eslint": "^4.0",
-    "@vue/cli-service": "^4.0",
-    "@vuepress/plugin-register-components": "^1.5.0",
+    "@vue/cli-plugin-babel": "^4.5.7",
+    "@vue/cli-plugin-eslint": "^4.5.7",
+    "@vue/cli-service": "^4.5.7",
+    "@vuepress/plugin-register-components": "^1.6.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
+    "eslint": "^7.10.0",
+    "eslint-plugin-vue": "^7.0.1",
     "lodash.camelcase": "^4.3.0",
     "markdown-it-meta": "0.0.1",
-    "postcss-cli": "^7.1.1",
-    "vue-template-compiler": "^2.6.11",
-    "vuepress": "^1.5.0",
+    "postcss-cli": "^8.1.0",
+    "vue-template-compiler": "^2.6.12",
+    "vuepress": "^1.6.0",
     "vuepress-plugin-template-constants": "^0.2.1"
   }
 }

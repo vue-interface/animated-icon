@@ -321,30 +321,6 @@ module.exports = !DESCRIPTORS && !fails(function () {
 
 /***/ }),
 
-/***/ "0d03":
-/***/ (function(module, exports, __webpack_require__) {
-
-var redefine = __webpack_require__("6eeb");
-
-var DatePrototype = Date.prototype;
-var INVALID_DATE = 'Invalid Date';
-var TO_STRING = 'toString';
-var nativeDateToString = DatePrototype[TO_STRING];
-var getTime = DatePrototype.getTime;
-
-// `Date.prototype.toString` method
-// https://tc39.github.io/ecma262/#sec-date.prototype.tostring
-if (new Date(NaN) + '' != INVALID_DATE) {
-  redefine(DatePrototype, TO_STRING, function toString() {
-    var value = getTime.call(this);
-    // eslint-disable-next-line no-self-compare
-    return value === value ? nativeDateToString.call(this) : INVALID_DATE;
-  });
-}
-
-
-/***/ }),
-
 /***/ "159b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -719,21 +695,6 @@ module.exports = function (CONSTRUCTOR_NAME) {
     });
   }
 };
-
-
-/***/ }),
-
-/***/ "277d":
-/***/ (function(module, exports, __webpack_require__) {
-
-var $ = __webpack_require__("23e7");
-var isArray = __webpack_require__("e8b5");
-
-// `Array.isArray` method
-// https://tc39.github.io/ecma262/#sec-array.isarray
-$({ target: 'Array', stat: true }, {
-  isArray: isArray
-});
 
 
 /***/ }),
@@ -1723,22 +1684,6 @@ module.exports = [
 
 /***/ }),
 
-/***/ "7a82":
-/***/ (function(module, exports, __webpack_require__) {
-
-var $ = __webpack_require__("23e7");
-var DESCRIPTORS = __webpack_require__("83ab");
-var objectDefinePropertyModile = __webpack_require__("9bf2");
-
-// `Object.defineProperty` method
-// https://tc39.github.io/ecma262/#sec-object.defineproperty
-$({ target: 'Object', stat: true, forced: !DESCRIPTORS, sham: !DESCRIPTORS }, {
-  defineProperty: objectDefinePropertyModile.f
-});
-
-
-/***/ }),
-
 /***/ "7b0b":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2022,7 +1967,14 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
   } else {}
 }(typeof self !== 'undefined' ? self : this, function () {
   function getCurrentScript () {
-    if (document.currentScript) {
+    var descriptor = Object.getOwnPropertyDescriptor(document, 'currentScript')
+    // for chrome
+    if (!descriptor && 'currentScript' in document && document.currentScript) {
+      return document.currentScript
+    }
+
+    // for other browsers with native support for currentScript
+    if (descriptor && descriptor.get !== getCurrentScript && document.currentScript) {
       return document.currentScript
     }
   
@@ -4129,7 +4081,7 @@ if (typeof window !== 'undefined') {
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"6240bcc1-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/AnimatedIcon.vue?vue&type=template&id=7cc7afac&
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"a5e460e0-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/AnimatedIcon.vue?vue&type=template&id=7cc7afac&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"animated-icon",on:{"mouseenter":function($event){_vm.hover && _vm.play()},"mouseleave":function($event){_vm.hover && _vm.pause()}}},[(_vm.loaded)?_c('lottie',{style:({width: ((_vm.dimensions.width) + "px"), height: ((_vm.dimensions.height) + "px"), fontSize: ((_vm.dimensions.height) + "px"), lineHeight: 0}),attrs:{"options":_vm.options},on:{"animCreated":_vm.onAnimCreated}}):_vm._e()],1)}
 var staticRenderFns = []
 
@@ -4198,11 +4150,7 @@ var es_object_entries = __webpack_require__("4fad");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom-collections.for-each.js
 var web_dom_collections_for_each = __webpack_require__("159b");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.is-array.js
-var es_array_is_array = __webpack_require__("277d");
-
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/arrayWithHoles.js
-
 function _arrayWithHoles(arr) {
   if (Array.isArray(arr)) return arr;
 }
@@ -4246,9 +4194,6 @@ var es_array_from = __webpack_require__("a630");
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.array.slice.js
 var es_array_slice = __webpack_require__("fb6a");
 
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.date.to-string.js
-var es_date_to_string = __webpack_require__("0d03");
-
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es.regexp.to-string.js
 var es_regexp_to_string = __webpack_require__("25f0");
 
@@ -4263,7 +4208,6 @@ function _arrayLikeToArray(arr, len) {
   return arr2;
 }
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/unsupportedIterableToArray.js
-
 
 
 
@@ -4297,12 +4241,7 @@ function _classCallCheck(instance, Constructor) {
     throw new TypeError("Cannot call a class as a function");
   }
 }
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es.object.define-property.js
-var es_object_define_property = __webpack_require__("7a82");
-
 // CONCATENATED MODULE: ./node_modules/@babel/runtime/helpers/esm/createClass.js
-
-
 function _defineProperties(target, props) {
   for (var i = 0; i < props.length; i++) {
     var descriptor = props[i];
@@ -4451,7 +4390,7 @@ function registry_reset() {
      */
     availableSizes: {
       type: Object,
-      "default": function _default() {
+      default: function _default() {
         return {
           'xs': 16,
           'sm': 32,
@@ -4477,7 +4416,7 @@ function registry_reset() {
      */
     direction: {
       type: Number,
-      "default": 1,
+      default: 1,
       validate: function validate(value) {
         return value === 1 || value === -1;
       }
@@ -4523,7 +4462,7 @@ function registry_reset() {
      */
     registry: {
       type: IconRegistry_IconRegistry,
-      "default": function _default() {
+      default: function _default() {
         return src_registry;
       }
     },
@@ -4536,7 +4475,7 @@ function registry_reset() {
      */
     size: {
       type: [Number, String],
-      "default": 'sm',
+      default: 'sm',
       validate: function validate(value) {
         if (typeof value === 'number') {
           return value;
@@ -4553,7 +4492,7 @@ function registry_reset() {
      */
     speed: {
       type: Number,
-      "default": .5,
+      default: .5,
       validate: function validate(value) {
         return value >= 0 && value <= 1;
       }
