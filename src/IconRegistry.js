@@ -1,3 +1,4 @@
+import 'core-js/features/object/entries';
 
 export default class IconRegistry {
 

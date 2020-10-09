@@ -12,13 +12,10 @@
 </template>
 
 <script>
-// import Lottie from 'vue-lottie';
-import registry from './registry';
+import { registry } from './registry';
 import IconRegistry from './IconRegistry';
 
 export default {
-
-    name: 'AnimatedIcon',
 
     components: {
         Lottie: () => import(/* webpackChunkName: 'lottie'*/'vue-lottie')

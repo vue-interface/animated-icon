@@ -21,8 +21,7 @@ function reset(...args) {
 export {
     get,
     register,
+    registry,
     remove,
     reset
 };
-
-export default registry;

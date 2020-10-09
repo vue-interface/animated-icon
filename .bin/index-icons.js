@@ -28,18 +28,18 @@ fs.readdir(basePath, function (err, files) {
             ].join('\n'));
 
             packages.push(
-                `const ${camelCase(dir)} = ${fs.readFileSync(path.join(basePath, dir, `${dir}.json`))};\n`
+                `var ${camelCase(dir)} = ${fs.readFileSync(path.join(basePath, dir, `${dir}.json`))};\n`
             );
         }
     });
-
-    packages.push([
+    
+    fs.writeFileSync(path.join(basePath, 'index.js'), packages.concat([
         'export {',
             files.map(dir => `    ${camelCase(dir)},`).join('\n'),
         '};'
-    ].join('\n'));
+    ].join('\n')).join('\n'));
 
-    fs.writeFileSync(path.join(basePath, 'index.js'), packages.join('\n'));
+    fs.writeFileSync(path.join(basePath, 'browser.js'), packages.join('\n'));
 
     console.log('Finished!');
 });
