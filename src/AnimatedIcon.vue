@@ -12,8 +12,8 @@
 </template>
 
 <script>
+import ComponentRegistry from '@vue-interface/component-registry';
 import { registry } from './registry';
-import IconRegistry from './IconRegistry';
 
 export default {
 
@@ -100,7 +100,7 @@ export default {
          * @param {IconRegistry}
          */
         registry: {
-            type: IconRegistry,
+            type: ComponentRegistry,
             default: () => registry
         },
 

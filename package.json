@@ -5,8 +5,9 @@
   "main": "./index.js",
   "sideEffect": false,
   "scripts": {
-    "watch": "npm run serve",
-    "serve": "vue-cli-service build --target lib --name=AnimatedIcon ./index.js --watch",
+    "serve": "vue-cli-service serve",
+    "watch": "npm run dev",
+    "dev": "vue-cli-service build --target lib --name=AnimatedIcon ./index.js --watch",
     "build": "vue-cli-service build --target lib --name=AnimatedIcon ./index.js",
     "lint": "vue-cli-service lint",
     "fix": "vue-cli-service lint --fix",
@@ -39,6 +40,7 @@
   },
   "homepage": "https://github.com/vue-interface/animated-icon/docs#readme",
   "dependencies": {
+    "@vue-interface/component-registry": "^0.1.5",
     "core-js": "^3.6.4",
     "vue": "^2.6.12",
     "vue-lottie": "^0.2.1"
