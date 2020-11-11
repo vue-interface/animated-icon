@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/vue-interface/animated-icon/docs#readme",
   "dependencies": {
-    "@vue-interface/component-registry": "^0.1.5",
+    "@vue-interface/component-registry": "^0.2.0",
     "core-js": "^3.6.4",
     "vue": "^2.6.12",
     "vue-lottie": "^0.2.1"
