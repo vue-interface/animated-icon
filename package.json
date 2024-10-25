@@ -42,7 +42,7 @@
   "dependencies": {
     "@vue-interface/component-registry": "^0.2.0",
     "core-js": "^3.6.4",
-    "vue": "^2.6.12",
+    "vue": "^3.0.0",
     "vue-lottie": "^0.2.1"
   },
   "devDependencies": {
